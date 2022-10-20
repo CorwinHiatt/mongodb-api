@@ -16,15 +16,17 @@ export async function addNewFurniture(req, res) {
 export async function getAllFurniture(req, res) {
     const db = dbConnect()
     const collection = await db.collection('furniture')
-    .find({ model: search })
+    .find(search)
     .toArray()
         res.send(collection)
     
 }
 
-export async function fundFurnitureByModel(req, res) {
+export async function findFirnitureByModel(req, res) {
     const db = dbConnect()
     const { search } = req.params
-    const collection = await db.collection('furniture').find().toArray
-    res.send(collection)
+    const collection = await db.collection('furniture')
+    .find({type: search })
+    .toArray()
+        res.send(collection)
 }
